@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SoyDelParche — Mockups</title>
+<link href="https://fonts.googleapis.com/css2?family=Megrim&family=Noto+Sans+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --t: #016D6D;
+  --tl: #00B6B2;
+  --tli: #E0F7F7;
+  --or: #FF9658;
+  --ori: #FFF0E8;
+  --re: #FD5A19;
+  --bg: #E8E4DC;
+  --bd: rgba(0,0,0,.09);
+  --tex: repeating-linear-gradient(45deg,transparent,transparent 8px,rgba(255,255,255,.04) 8px,rgba(255,255,255,.04) 9px),#016D6D;
+  --F: 'Megrim', cursive;
+  --B: 'Noto Sans Mono', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #0e0e0e;
+  font-family: var(--B);
+  overflow-x: hidden;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 60px 20px;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 20% 50%, rgba(1,109,109,.25) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 20%, rgba(255,150,88,.15) 0%, transparent 50%),
+              radial-gradient(ellipse at 60% 80%, rgba(253,90,25,.1) 0%, transparent 50%),
+              #0e0e0e;
+}
+
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(1,109,109,.06) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(1,109,109,.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.hero-content { position: relative; text-align: center; z-index: 1; }
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(1,109,109,.2);
+  border: 1px solid rgba(1,182,178,.3);
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-family: var(--B);
+  font-size: 10px;
+  color: var(--tl);
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  animation: fadeUp .6s ease both;
+}
+
+.hero-title {
+  font-family: var(--F);
+  font-size: clamp(56px, 10vw, 96px);
+  color: #fff;
+  line-height: .9;
+  letter-spacing: .02em;
+  margin-bottom: 16px;
+  animation: fadeUp .6s .1s ease both;
+}
+
+.hero-title span { color: var(--or); }
+
+.hero-sub {
+  font-family: var(--B);
+  font-size: 13px;
+  color: rgba(255,255,255,.4);
+  margin-bottom: 48px;
+  animation: fadeUp .6s .2s ease both;
+}
+
+.hero-tags {
+  display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+  margin-bottom: 64px;
+  animation: fadeUp .6s .3s ease both;
+}
+
+.tag {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 10px;
+  color: rgba(255,255,255,.5);
+  letter-spacing: .06em;
+}
+
+.scroll-hint {
+  position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  color: rgba(255,255,255,.2); font-size: 9px; letter-spacing: .1em;
+  animation: bounce 2s infinite;
+}
+.scroll-hint::after {
+  content: '';
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, rgba(1,182,178,.5), transparent);
+}
+
+/* ── SECTION ── */
+.section {
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 9px;
+  color: var(--tl);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  opacity: .7;
+}
+
+.section-title {
+  font-family: var(--F);
+  font-size: clamp(32px, 5vw, 48px);
+  color: #fff;
+  margin-bottom: 12px;
+  line-height: 1;
+}
+
+.section-desc {
+  font-size: 12px;
+  color: rgba(255,255,255,.35);
+  line-height: 1.7;
+  max-width: 480px;
+  margin-bottom: 48px;
+}
+
+/* ── PHONE FRAME ── */
+.phones-grid {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.phone-wrap {
+  flex-shrink: 0;
+  animation: fadeUp .6s ease both;
+}
+
+.phone-label {
+  font-size: 9px;
+  color: rgba(255,255,255,.25);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.phone {
+  width: 220px;
+  border-radius: 28px;
+  background: #1a1a1a;
+  border: 1px solid rgba(255,255,255,.08);
+  overflow: hidden;
+  box-shadow: 0 32px 64px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.04);
+  position: relative;
+}
+
+.phone::before {
+  content: '';
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 60px; height: 4px;
+  background: rgba(255,255,255,.08);
+  border-radius: 0 0 4px 4px;
+  z-index: 10;
+}
+
+.phone.tall { width: 240px; }
+
+/* ── SCREENS ── */
+.screen-header {
+  background: var(--tex);
+  padding: 14px 14px 18px;
+}
+.screen-topbar {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;
+}
+.s-logo { font-family: var(--F); font-size: 18px; color: #fff; letter-spacing: .04em; }
+.s-loc { font-family: var(--B); font-size: 9px; color: rgba(255,255,255,.4); margin-top: 1px; }
+.s-avatar {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--or);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--F); font-size: 12px; color: #fff;
+}
+.s-greeting { font-family: var(--B); font-size: 10px; color: var(--tl); font-weight: 700; margin-bottom: 4px; }
+.s-name { font-family: var(--F); font-size: 22px; color: #fff; line-height: 1; margin-bottom: 6px; }
+.s-sub { font-family: var(--B); font-size: 9px; color: rgba(255,255,255,.4); line-height: 1.5; }
+
+.screen-body { background: var(--bg); padding: 10px; }
+
+.map-block {
+  height: 80px; border-radius: 10px;
+  background: #E0F7F7;
+  margin-bottom: 8px;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 4px;
+  border: 1px solid var(--bd);
+  position: relative; overflow: hidden;
+}
+.map-block::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(0deg,rgba(1,109,109,.04) 0px,rgba(1,109,109,.04) 1px,transparent 1px,transparent 20px),
+              repeating-linear-gradient(90deg,rgba(1,109,109,.04) 0px,rgba(1,109,109,.04) 1px,transparent 1px,transparent 20px);
+}
+.map-emoji { font-size: 20px; position: relative; }
+.map-text { font-family: var(--F); font-size: 12px; color: var(--t); position: relative; }
+.map-sub { font-family: var(--B); font-size: 8px; color: rgba(1,109,109,.6); position: relative; }
+
+/* dots */
+.dot { position: absolute; border-radius: 50%; border: 2px solid #fff; }
+
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; margin-bottom: 8px; }
+.stat-card {
+  background: #fff; border-radius: 8px; padding: 6px 4px; text-align: center;
+  border: 1px solid var(--bd);
+}
+.stat-n { font-family: var(--F); font-size: 18px; color: var(--t); }
+.stat-l { font-family: var(--B); font-size: 7px; color: #888; }
+
+.muro-block { background: #fff; border-radius: 10px; border: 1px solid var(--bd); overflow: hidden; margin-bottom: 8px; }
+.muro-head { padding: 7px 10px; border-bottom: 1px solid var(--bd); display: flex; justify-content: space-between; align-items: center; }
+.muro-title { font-family: var(--F); font-size: 13px; color: #1a1a1a; }
+.muro-badge { background: var(--or); border-radius: 10px; padding: 2px 6px; font-family: var(--B); font-size: 7px; color: #fff; font-weight: 700; }
+.muro-msg { padding: 8px 10px; border-bottom: 1px solid var(--bd); display: flex; gap: 6px; }
+.muro-av { width: 22px; height: 22px; border-radius: 50%; background: var(--tli); display: flex; align-items: center; justify-content: center; font-family: var(--F); font-size: 10px; color: var(--t); flex-shrink: 0; }
+.muro-text { font-family: var(--B); font-size: 9px; color: #333; line-height: 1.4; }
+.muro-meta { font-family: var(--B); font-size: 7px; color: #999; margin-top: 2px; }
+
+/* promo card */
+.promo-card { background: #fff; border-radius: 10px; border: 1px solid var(--bd); overflow: hidden; margin-bottom: 6px; }
+.promo-img { height: 60px; background: linear-gradient(135deg, var(--tli), #fff); display: flex; align-items: center; justify-content: center; font-size: 24px; }
+.promo-body { padding: 8px 10px; }
+.promo-shop { font-family: var(--B); font-size: 8px; color: #888; margin-bottom: 2px; }
+.promo-title { font-family: var(--F); font-size: 14px; color: var(--t); margin-bottom: 5px; }
+.promo-footer { display: flex; justify-content: space-between; align-items: center; }
+.promo-badge { background: var(--tli); border-radius: 10px; padding: 2px 7px; font-family: var(--B); font-size: 7px; color: var(--t); font-weight: 700; }
+.promo-date { font-family: var(--B); font-size: 7px; color: #999; }
+.promo-vecinos { padding: 6px 10px; border-top: 1px solid var(--bd); display: flex; align-items: center; gap: 5px; font-family: var(--B); font-size: 8px; color: var(--t); }
+
+/* bottom nav */
+.bottom-nav {
+  display: flex; background: #fff; border-top: 1px solid var(--bd);
+  padding: 6px 0 4px;
+}
+.nav-tab {
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px;
+  font-family: var(--B); font-size: 7px;
+}
+.nav-icon { width: 16px; height: 16px; }
+.nav-tab.active { color: var(--t); }
+.nav-tab.active .nav-icon { stroke: var(--t); }
+.nav-tab:not(.active) { color: #aaa; }
+.nav-tab:not(.active) .nav-icon { stroke: #aaa; }
+
+/* landing screen */
+.landing-hero { background: var(--t); padding: 20px 14px 16px; position: relative; overflow: hidden; }
+.lh-circle1 { position: absolute; top: 0; right: 0; width: 60px; height: 60px; background: var(--or); border-radius: 0 0 0 60px; opacity: .25; }
+.lh-circle2 { position: absolute; bottom: -20px; left: -20px; width: 50px; height: 50px; background: var(--re); border-radius: 50%; opacity: .2; }
+.lh-logo { font-family: var(--F); font-size: 36px; color: #fff; line-height: .9; margin-bottom: 8px; position: relative; }
+.lh-sub { font-family: var(--B); font-size: 9px; color: rgba(255,255,255,.5); position: relative; line-height: 1.5; }
+.landing-orange { background: var(--or); padding: 8px 12px; font-family: var(--B); font-size: 9px; color: #fff; line-height: 1.6; }
+.landing-cifras { background: var(--bg); padding: 8px 10px; }
+.cifras-label { font-family: var(--B); font-size: 7px; color: #888; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 6px; font-weight: 700; }
+.cifras-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 8px; }
+.cifra { background: #fff; border-radius: 8px; padding: 7px 6px; text-align: center; border: 1px solid var(--bd); }
+.cifra-n { font-family: var(--F); font-size: 20px; }
+.cifra-l { font-family: var(--B); font-size: 7px; color: #888; }
+.landing-ctas { background: var(--t); padding: 10px 12px 14px; }
+.cta-btn { width: 100%; border: none; border-radius: 8px; padding: 9px; font-family: var(--B); font-size: 10px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 6px; }
+.cta-primary { background: #fff; color: var(--t); }
+.cta-ghost { background: rgba(255,255,255,.12); color: rgba(255,255,255,.6); font-size: 9px; }
+
+/* redimir */
+.redimir-header { background: var(--tex); padding: 12px 14px 16px; }
+.redimir-back { font-family: var(--B); font-size: 8px; color: rgba(255,255,255,.4); margin-bottom: 8px; }
+.redimir-title { font-family: var(--F); font-size: 20px; color: #fff; }
+.redimir-body { background: var(--bg); padding: 10px; }
+.redimir-card { background: #fff; border-radius: 10px; border: 1px solid var(--bd); overflow: hidden; margin-bottom: 8px; }
+.rc-fachada { height: 55px; background: linear-gradient(135deg, #1a1a1a, #333); display: flex; align-items: center; justify-content: center; font-size: 20px; }
+.rc-info { padding: 8px 10px; display: flex; gap: 7px; align-items: center; }
+.rc-logo { width: 32px; height: 32px; border-radius: 7px; background: #f5f5f5; display: flex; align-items: center; justify-content: center; font-size: 14px; border: 1px solid var(--bd); }
+.rc-name { font-family: var(--B); font-size: 8px; color: #888; }
+.rc-promo { font-family: var(--F); font-size: 14px; color: var(--t); }
+.rc-btns { padding: 6px 10px; border-top: 1px solid var(--bd); display: flex; gap: 5px; }
+.rc-btn { flex: 1; border-radius: 7px; padding: 6px; font-family: var(--B); font-size: 8px; font-weight: 700; text-align: center; border: none; cursor: pointer; }
+.rc-maps { background: var(--tli); color: var(--t); }
+.rc-wa { background: #25D366; color: #fff; }
+.codigo-label { font-family: var(--B); font-size: 8px; color: #888; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 4px; font-weight: 700; }
+.codigo-box { background: #fff; border: 1px solid var(--bd); border-radius: 10px; padding: 10px; text-align: center; font-family: var(--F); font-size: 24px; color: var(--t); letter-spacing: .12em; margin-bottom: 8px; }
+.accion-opt { background: #fff; border: 1.5px solid var(--bd); border-radius: 8px; padding: 8px 10px; margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
+.accion-opt.selected { border-color: var(--t); background: var(--tli); }
+.accion-radio { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--t); background: var(--t); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.accion-radio::after { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #fff; }
+.accion-title { font-family: var(--B); font-size: 9px; font-weight: 700; color: var(--t); }
+.accion-sub { font-family: var(--B); font-size: 7px; color: #888; }
+.confirm-btn { width: 100%; background: var(--t); border: none; border-radius: 9px; padding: 10px; font-family: var(--F); font-size: 17px; color: #fff; margin-top: 4px; }
+
+/* parchemos */
+.parch-card { background: #fff; border-radius: 10px; border: 1px solid var(--bd); overflow: hidden; margin-bottom: 8px; }
+.parch-img { height: 70px; background: linear-gradient(135deg, #1a3a3a, #016D6D); display: flex; align-items: center; justify-content: center; font-size: 28px; }
+.parch-body { padding: 9px 10px; }
+.parch-shop { font-family: var(--B); font-size: 8px; color: #888; margin-bottom: 3px; }
+.parch-title { font-family: var(--F); font-size: 15px; color: var(--t); margin-bottom: 5px; }
+.parch-desc { font-family: var(--B); font-size: 8px; color: #555; line-height: 1.5; margin-bottom: 7px; }
+.parch-dates { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 8px; }
+.parch-date { display: flex; align-items: center; gap: 4px; border-radius: 6px; padding: 4px 8px; font-family: var(--B); font-size: 8px; font-weight: 700; }
+.parch-date.inicio { background: var(--tli); color: var(--t); }
+.parch-date.fin { background: #FCEBEB; color: #A32D2D; }
+.parch-counter { font-family: var(--B); font-size: 8px; color: #888; margin-bottom: 7px; }
+.parch-counter strong { color: var(--t); }
+.parch-btns { display: flex; gap: 5px; }
+.parch-btn { flex: 1; border-radius: 8px; padding: 8px 5px; font-family: var(--B); font-size: 9px; font-weight: 700; border: none; text-align: center; }
+.parch-interes { background: var(--t); color: #fff; }
+.parch-wa { background: #25D366; color: #fff; }
+
+/* perfil */
+.perfil-header { background: var(--tex); padding: 14px 14px 18px; text-align: center; }
+.perfil-big-av { width: 52px; height: 52px; border-radius: 50%; background: var(--or); margin: 0 auto 8px; display: flex; align-items: center; justify-content: center; font-family: var(--F); font-size: 24px; color: #fff; }
+.perfil-hi { font-family: var(--B); font-size: 9px; color: var(--tl); font-weight: 700; margin-bottom: 3px; }
+.perfil-name { font-family: var(--F); font-size: 19px; color: #fff; margin-bottom: 3px; }
+.perfil-email { font-family: var(--B); font-size: 8px; color: rgba(255,255,255,.4); margin-bottom: 7px; }
+.perfil-badge { display: inline-block; background: rgba(255,255,255,.15); border-radius: 10px; padding: 3px 10px; font-family: var(--B); font-size: 8px; color: #fff; }
+.perfil-body { background: var(--bg); padding: 10px; }
+.input-group { margin-bottom: 7px; }
+.input-lbl { font-family: var(--B); font-size: 7px; color: #888; text-transform: uppercase; letter-spacing: .07em; font-weight: 700; margin-bottom: 3px; }
+.fake-input { background: #fff; border: 1px solid var(--bd); border-radius: 8px; padding: 7px 10px; font-family: var(--B); font-size: 10px; color: #333; }
+.chips { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 7px; }
+.chip { border-radius: 20px; padding: 4px 10px; font-family: var(--B); font-size: 9px; font-weight: 700; cursor: pointer; border: 1.5px solid transparent; }
+.chip.on { background: var(--tli); color: var(--t); border-color: var(--t); }
+.chip.off { background: #fff; color: #888; border-color: var(--bd); }
+.save-btn { width: 100%; background: var(--t); border: none; border-radius: 9px; padding: 10px; font-family: var(--F); font-size: 16px; color: #fff; margin-top: 4px; }
+
+/* tienda */
+.tienda-dash { background: var(--bg); padding: 10px; }
+.dash-title { font-family: var(--F); font-size: 14px; color: #1a1a1a; margin-bottom: 7px; }
+.dash-card { background: #fff; border-radius: 9px; border: 1px solid var(--bd); padding: 9px 10px; margin-bottom: 6px; }
+.dash-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px; }
+.dash-promo-name { font-family: var(--B); font-size: 10px; font-weight: 700; color: #1a1a1a; }
+.dash-aprobada { background: var(--tli); border-radius: 10px; padding: 2px 7px; font-family: var(--B); font-size: 7px; color: var(--t); font-weight: 700; }
+.dash-tipo { font-family: var(--B); font-size: 8px; color: #888; margin-bottom: 5px; }
+.dash-code-row { display: flex; align-items: center; gap: 6px; }
+.dash-code-lbl { font-family: var(--B); font-size: 8px; color: #888; }
+.dash-code { font-family: var(--F); font-size: 16px; color: var(--t); letter-spacing: .1em; }
+.dash-redes { font-family: var(--B); font-size: 8px; color: #888; margin-left: auto; }
+
+/* registros */
+.reg-header-client { background: var(--tex); padding: 12px 14px 14px; }
+.reg-header-tienda { background: repeating-linear-gradient(45deg,transparent,transparent 8px,rgba(255,255,255,.04) 8px,rgba(255,255,255,.04) 9px),#FD5A19; padding: 12px 14px 14px; }
+.reg-back { font-family: var(--B); font-size: 8px; color: rgba(255,255,255,.4); margin-bottom: 7px; }
+.reg-title { font-family: var(--F); font-size: 18px; color: #fff; }
+.reg-sub { font-family: var(--B); font-size: 8px; color: rgba(255,255,255,.4); margin-top: 2px; }
+.reg-google { background: var(--or); padding: 6px 12px; display: flex; align-items: center; gap: 6px; }
+.reg-google-box { background: rgba(255,255,255,.2); border-radius: 6px; padding: 5px 8px; display: flex; align-items: center; gap: 5px; font-family: var(--B); font-size: 8px; color: #fff; font-weight: 700; }
+.reg-body { background: var(--bg); padding: 10px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 0; }
+
+/* ── FEATURE GRID ── */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 0;
+}
+
+.feature {
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 16px;
+  padding: 24px;
+  transition: border-color .3s;
+}
+.feature:hover { border-color: rgba(1,182,178,.3); }
+
+.feat-icon { font-size: 28px; margin-bottom: 12px; }
+.feat-title { font-family: var(--F); font-size: 20px; color: #fff; margin-bottom: 8px; }
+.feat-desc { font-size: 11px; color: rgba(255,255,255,.35); line-height: 1.6; }
+
+/* ── FOOTER ── */
+footer {
+  text-align: center;
+  padding: 60px 20px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.footer-logo { font-family: var(--F); font-size: 36px; color: #fff; margin-bottom: 8px; }
+.footer-sub { font-family: var(--B); font-size: 10px; color: rgba(255,255,255,.2); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* divider */
+.divider-line {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(1,182,178,.3), transparent);
+  margin: 0 20px;
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">MVP · Minuto de Dios · Bogotá 2026</div>
+    <div class="hero-title">Soy<br>Del<span>Parche</span></div>
+    <div class="hero-sub">El barrio conectado — Pantallas principales de la app</div>
+    <div class="hero-tags">
+      <span class="tag">React + Vite</span>
+      <span class="tag">Firebase Auth</span>
+      <span class="tag">Google Sheets BD</span>
+      <span class="tag">Cloudinary</span>
+      <span class="tag">Leaflet Maps</span>
+      <span class="tag">OpenStreetMap</span>
+    </div>
+  </div>
+  <div class="scroll-hint">scroll</div>
+</section>
+
+<div class="divider-line"></div>
+
+<!-- LANDING -->
+<section class="section reveal">
+  <div class="section-label">01 — Entrada</div>
+  <div class="section-title">Landing pública</div>
+  <div class="section-desc">La primera pantalla que ve cualquier persona — sin necesidad de registrarse. Cifras en tiempo real del Sheet.</div>
+
+  <div class="phones-grid">
+
+    <div class="phone-wrap" style="animation-delay:.1s">
+      <div class="phone-label">Landing sin login</div>
+      <div class="phone">
+        <div class="landing-hero">
+          <div class="lh-circle1"></div>
+          <div class="lh-circle2"></div>
+          <div class="lh-logo">Soy<br>Del<br>Parche</div>
+          <div class="lh-sub">Las mejores promos<br>y actividades del barrio</div>
+        </div>
+        <div class="landing-orange">Conectamos vecinos con las tiendas del barrio. Promos exclusivas, regalos y actividades.</div>
+        <div class="landing-cifras">
+          <div class="cifras-label">En el parche somos</div>
+          <div class="cifras-grid">
+            <div class="cifra"><div class="cifra-n" style="color:#016D6D">18</div><div class="cifra-l">Tiendas</div></div>
+            <div class="cifra"><div class="cifra-n" style="color:#FD5A19">247</div><div class="cifra-l">Vecinos</div></div>
+            <div class="cifra"><div class="cifra-n" style="color:#FF9658">12</div><div class="cifra-l">Promos</div></div>
+            <div class="cifra"><div class="cifra-n" style="color:#016D6D">3</div><div class="cifra-l">Actividades</div></div>
+          </div>
+        </div>
+        <div class="landing-ctas">
+          <button class="cta-btn cta-primary">Unirme al parche</button>
+          <button class="cta-btn cta-ghost">Ya tengo cuenta → Entrar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="phone-wrap" style="animation-delay:.2s">
+      <div class="phone-label">Registro cliente</div>
+      <div class="phone">
+        <div class="reg-header-client">
+          <div class="reg-back">← Volver</div>
+          <div class="reg-title">Soy del barrio</div>
+          <div class="reg-sub">Completa tu perfil de vecino</div>
+        </div>
+        <div class="reg-google">
+          <div class="reg-google-box">G · maria@gmail.com</div>
+        </div>
+        <div class="reg-body">
+          <div class="two-col" style="margin-bottom:7px">
+            <div class="input-group"><div class="input-lbl">Nombre</div><div class="fake-input">Maria</div></div>
+            <div class="input-group"><div class="input-lbl">Apellido</div><div class="fake-input">García</div></div>
+          </div>
+          <div class="input-group"><div class="input-lbl">WhatsApp</div><div class="fake-input">57 300 123 4567</div></div>
+          <div class="input-lbl" style="margin-bottom:5px">Intereses</div>
+          <div class="chips">
+            <div class="chip on">🍕 Comida</div>
+            <div class="chip off">💄 Belleza</div>
+            <div class="chip on">🎨 Arte</div>
+          </div>
+          <button class="save-btn">Entrar al parche</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="phone-wrap" style="animation-delay:.3s">
+      <div class="phone-label">Registro tienda</div>
+      <div class="phone">
+        <div class="reg-header-tienda">
+          <div class="reg-back">← Volver</div>
+          <div class="reg-title">Mi tienda</div>
+          <div class="reg-sub">Registra tu negocio en el parche</div>
+        </div>
+        <div class="reg-google">
+          <div class="reg-google-box">G · tienda@gmail.com</div>
+        </div>
+        <div class="reg-body">
+          <div class="input-group"><div class="input-lbl">Nombre del negocio</div><div class="fake-input">Café Maddre</div></div>
+          <div class="input-group"><div class="input-lbl">Categoría</div><div class="fake-input">🍕 Comida</div></div>
+          <div class="input-group"><div class="input-lbl">Descripción</div><div class="fake-input" style="font-size:9px;color:#888">Hacemos pan de masa madre...</div></div>
+          <div class="input-group"><div class="input-lbl">Dirección</div><div class="fake-input">Calle 12 #4-32</div></div>
+          <div class="input-group"><div class="input-lbl">WhatsApp</div><div class="fake-input">57 300 123 4567</div></div>
+          <button class="save-btn" style="background:#FD5A19">Registrar mi tienda</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider-line"></div>
+
+<!-- INICIO CLIENTE -->
+<section class="section reveal">
+  <div class="section-label">02 — Home cliente</div>
+  <div class="section-title">Inicio del parche</div>
+  <div class="section-desc">Dashboard principal del cliente con mapa interactivo, estadísticas en tiempo real y muro comunitario.</div>
+
+  <div class="phones-grid">
+
+    <div class="phone-wrap" style="animation-delay:.1s">
+      <div class="phone-label">Inicio</div>
+      <div class="phone">
+        <div class="screen-header">
+          <div class="screen-topbar">
+            <div><div class="s-logo">SoyDelParche</div><div class="s-loc">📍 Localidad Engativá</div></div>
+            <div class="s-avatar">M</div>
+          </div>
+          <div class="s-greeting">Hola,</div>
+          <div class="s-name">Maria del parche</div>
+          <div class="s-sub">Esto va a pasar esta semana<br>en el barrio 👇</div>
+        </div>
+        <div class="screen-body">
+          <div class="map-block">
+            <div class="dot" style="top:18px;left:40px;width:10px;height:10px;background:#016D6D"></div>
+            <div class="dot" style="top:30px;right:60px;width:10px;height:10px;background:#016D6D"></div>
+            <div class="dot" style="bottom:20px;left:70px;width:8px;height:8px;background:#888"></div>
+            <div class="dot" style="bottom:18px;right:40px;width:10px;height:10px;background:#FD5A19"></div>
+            <div class="map-emoji">🗺️</div>
+            <div class="map-text">1 tienda del parche</div>
+            <div class="map-sub">Toca para ver el mapa · 1 promo activa</div>
+          </div>
+          <div class="muro-block" style="margin-bottom:6px;background:#fff;border-radius:10px;border:1px solid var(--bd)">
+            <div style="padding:7px 10px 6px;border-bottom:1px solid var(--bd)">
+              <div style="font-family:var(--B);font-size:8px;color:#888;text-transform:uppercase;letter-spacing:.07em;font-weight:700;margin-bottom:4px">Ya somos del parche</div>
+              <div style="display:flex;gap:5px;flex-wrap:wrap">
+                <div style="background:var(--tli);border-radius:20px;padding:3px 8px;font-family:var(--B);font-size:7px;color:var(--t);font-weight:700">3 clientes</div>
+                <div style="background:var(--ori);border-radius:20px;padding:3px 8px;font-family:var(--B);font-size:7px;color:#c44400;font-weight:700">1 tienda</div>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;padding:7px">
+              <div class="stat-card"><div class="stat-n" style="color:var(--t)">1</div><div class="stat-l">Promos</div></div>
+              <div class="stat-card"><div class="stat-n" style="color:var(--re)">1</div><div class="stat-l">Actividades</div></div>
+              <div class="stat-card"><div class="stat-n" style="color:var(--or)">0</div><div class="stat-l">Regalos</div></div>
+            </div>
+          </div>
+          <div class="muro-block">
+            <div class="muro-head">
+              <span class="muro-title">Muro del parche</span>
+              <span class="muro-badge">2 mensajes</span>
+            </div>
+            <div style="padding:6px 10px 4px;background:var(--bg);font-family:var(--B);font-size:7px;color:#888;border-bottom:1px solid var(--bd)">Anécdotas · vivencias · clasificados · chisme y más...</div>
+            <div class="muro-msg">
+              <div class="muro-av">M</div>
+              <div><div class="muro-text">quiero tinto y canelón</div><div class="muro-meta">maria del parche · 6:02 p.m.</div></div>
+            </div>
+            <div class="muro-msg" style="border-bottom:none">
+              <div class="muro-av" style="background:var(--ori);color:#c44400">D</div>
+              <div><div class="muro-text">test</div><div class="muro-meta">daniel del parche · 7:56 a.m.</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="bottom-nav">
+          <div class="nav-tab active">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Inicio
+          </div>
+          <div class="nav-tab">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+            Promos
+          </div>
+          <div class="nav-tab">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/></svg>
+            Regalos
+          </div>
+          <div class="nav-tab">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            Parchemos
+          </div>
+          <div class="nav-tab">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Historial
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROMOS -->
+    <div class="phone-wrap" style="animation-delay:.2s">
+      <div class="phone-label">Promos</div>
+      <div class="phone">
+        <div class="screen-header">
+          <div class="screen-topbar">
+            <div><div class="s-logo">SoyDelParche</div><div class="s-loc">📍 Localidad Engativá</div></div>
+            <div class="s-avatar">M</div>
+          </div>
+          <div class="s-greeting">ESTA SEMANA EN EL BARRIO</div>
+          <div class="s-name">1 promo disponible</div>
+          <div class="s-sub">¡Vamos a parchar! 🎯</div>
+        </div>
+        <div class="screen-body">
+          <div class="promo-card">
+            <div class="promo-img">🥖</div>
+            <div class="promo-body">
+              <div class="promo-shop">🏪 Panadería Don Luis</div>
+              <div class="promo-title">2×1 en pan de bono</div>
+              <div class="promo-footer">
+                <div class="promo-badge">2×1</div>
+                <div class="promo-date">Vence mar, 17 de mar</div>
+              </div>
+            </div>
+            <div class="promo-vecinos">
+              <div style="width:14px;height:14px;border-radius:50%;border:1.5px dashed var(--t);display:flex;align-items:center;justify-content:center;font-size:8px;color:var(--t)">+</div>
+              Sé el primero del parche en redimir
+            </div>
+          </div>
+          <div class="promo-card">
+            <div class="promo-img" style="background:linear-gradient(135deg,#FFF0E8,#fff)">☕</div>
+            <div class="promo-body">
+              <div class="promo-shop">🏪 Café Maddre</div>
+              <div class="promo-title">Un tinto gratis</div>
+              <div class="promo-footer">
+                <div class="promo-badge" style="background:var(--ori);color:#c44400">Regalo sorpresa</div>
+                <div class="promo-date">Vence sáb, 21 de mar</div>
+              </div>
+            </div>
+            <div class="promo-vecinos">
+              <div style="width:14px;height:14px;border-radius:50%;border:1.5px dashed var(--t);display:flex;align-items:center;justify-content:center;font-size:8px;color:var(--t)">+</div>
+              Sé el primero del parche en redimir
+            </div>
+          </div>
+        </div>
+        <div class="bottom-nav">
+          <div class="nav-tab"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Inicio</div>
+          <div class="nav-tab active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>Promos</div>
+          <div class="nav-tab"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/></svg>Regalos</div>
+          <div class="nav-tab"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Parchemos</div>
+          <div class="nav-tab"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Historial</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REDIMIR -->
+    <div class="phone-wrap" style="animation-delay:.3s">
+      <div class="phone-label">Redimir promo</div>
+      <div class="phone">
+        <div class="redimir-header">
+          <div class="redimir-back">← Volver</div>
+          <div class="redimir-title">Redimir promo</div>
+        </div>
+        <div class="redimir-body">
+          <div class="redimir-card">
+            <div class="rc-fachada">🍞</div>
+            <div class="rc-info">
+              <div class="rc-logo">🥖</div>
+              <div>
+                <div class="rc-name">🏪 Panadería Don Luis</div>
+                <div class="rc-promo">2×1 en pan de bono</div>
+              </div>
+            </div>
+            <div class="rc-btns">
+              <button class="rc-btn rc-maps">📍 Ver en Maps</button>
+              <button class="rc-btn rc-wa">💬 WhatsApp</button>
+            </div>
+          </div>
+          <div class="codigo-label">Código de la promo</div>
+          <div class="codigo-box">BON047</div>
+          <div style="font-family:var(--B);font-size:9px;color:#333;font-weight:700;margin-bottom:6px">Completa una acción primero:</div>
+          <div class="accion-opt selected">
+            <div class="accion-radio"></div>
+            <div><div class="accion-title">Compartir en redes</div><div class="accion-sub">Instagram, Facebook o WhatsApp</div></div>
+          </div>
+          <div class="accion-opt">
+            <div style="width:14px;height:14px;border-radius:50%;border:2px solid var(--bd);flex-shrink:0"></div>
+            <div><div style="font-family:var(--B);font-size:9px;color:#333;font-weight:700">Calificar en Maps</div><div class="accion-sub">Deja tu estrella en Google Maps</div></div>
+          </div>
+          <button class="confirm-btn">Confirmar redención</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider-line"></div>
+
+<!-- PARCHEMOS + PERFIL -->
+<section class="section reveal">
+  <div class="section-label">03 — Comunidad</div>
+  <div class="section-title">Parchemos y Perfil</div>
+  <div class="section-desc">Actividades del barrio con botón de interés, contacto directo, y perfil editable con detección de ubicación.</div>
+
+  <div class="phones-grid">
+
+    <div class="phone-wrap" style="animation-delay:.1s">
+      <div class="phone-label">Parchemos</div>
+      <div class="phone">
+        <div class="screen-header">
+          <div class="screen-topbar">
+            <div><div class="s-logo">SoyDelParche</div><div class="s-loc">📍 Localidad Engativá</div></div>
+            <div class="s-avatar">M</div>
+          </div>
+          <div class="s-greeting">EN EL BARRIO</div>
+          <div class="s-name">1 actividad</div>
+          <div class="s-sub">Eventos y actividades del parche 🎉</div>
+        </div>
+        <div class="screen-body">
+          <div class="parch-card">
+            <div class="parch-img">🧘</div>
+            <div class="parch-body">
+              <div class="parch-shop">🏪 Café Maddre</div>
+              <div class="parch-title">Taller de yoga</div>
+              <div class="parch-desc">Relájate con nosotros. Espacio para 20 personas. Trae tu colchoneta.</div>
+              <div class="parch-dates">
+                <div class="parch-date inicio">🟢 Inicio: sáb, 14 mar · 6:00</div>
+                <div class="parch-date fin">🔴 Fin: sáb, 21 mar · 8:00</div>
+              </div>
+              <div class="parch-counter"><strong>1 persona</strong> le interesa este evento</div>
+              <button style="width:100%;background:var(--t);border:none;border-radius:8px;padding:8px;font-family:var(--B);font-size:10px;font-weight:700;color:#fff;margin-bottom:6px">✓ Me interesa este evento</button>
+              <div class="parch-btns">
+                <button class="parch-btn" style="background:var(--tli);color:var(--t)">📍 ¿Dónde será?</button>
+                <button class="parch-btn" style="background:#25D366;color:#fff">💬 Contactar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bottom-nav">
+          <div class="nav-tab"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Inicio</div>
+          <div class="nav-tab"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/></svg>Promos</div>
+          <div class="nav-tab"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/></svg>Regalos</div>
+          <div class="nav-tab active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>Parchemos</div>
+          <div class="nav-tab"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Historial</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PERFIL -->
+    <div class="phone-wrap" style="animation-delay:.2s">
+      <div class="phone-label">Perfil cliente</div>
+      <div class="phone">
+        <div class="perfil-header">
+          <div class="screen-topbar" style="margin-bottom:10px">
+            <div><div class="s-logo">SoyDelParche</div><div class="s-loc">📍 Localidad Engativá</div></div>
+            <div class="s-avatar">M</div>
+          </div>
+          <div class="perfil-big-av">M</div>
+          <div class="perfil-hi">Hola,</div>
+          <div class="perfil-name">Maria del parche</div>
+          <div class="perfil-email">colorsonica@gmail.com</div>
+          <div class="perfil-badge">👤 Cliente</div>
+        </div>
+        <div class="perfil-body">
+          <div class="two-col" style="margin-bottom:7px">
+            <div class="input-group"><div class="input-lbl">Nombre</div><div class="fake-input">Maria</div></div>
+            <div class="input-group"><div class="input-lbl">Apellido</div><div class="fake-input">García</div></div>
+          </div>
+          <div class="input-group"><div class="input-lbl">WhatsApp</div><div class="fake-input">57 300 123 4567</div></div>
+          <div class="input-group"><div class="input-lbl">Barrio / Sector</div>
+            <div style="display:flex;gap:5px">
+              <div class="fake-input" style="flex:1">Localidad Engativá</div>
+              <button style="background:var(--tli);border:1px solid var(--t);border-radius:8px;padding:0 8px;font-family:var(--B);font-size:8px;font-weight:700;color:var(--t);white-space:nowrap">📍 Detectar</button>
+            </div>
+          </div>
+          <div style="background:#fff;border:1px solid var(--bd);border-radius:9px;padding:9px 10px;margin-bottom:7px;display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div style="font-family:var(--B);font-size:9px;font-weight:700;color:#1a1a1a;margin-bottom:2px">Activar ubicación</div>
+              <div style="font-family:var(--B);font-size:7px;color:#888">Ver tiendas y promos cerca en el mapa</div>
+            </div>
+            <div style="width:36px;height:20px;border-radius:10px;background:var(--t);position:relative">
+              <div style="position:absolute;top:2px;right:2px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2)"></div>
+            </div>
+          </div>
+          <div class="input-lbl" style="margin-bottom:5px">Intereses</div>
+          <div class="chips" style="margin-bottom:7px">
+            <div class="chip on">🍕 Comida</div>
+            <div class="chip off">💄 Belleza</div>
+            <div class="chip on">🎨 Arte</div>
+          </div>
+          <button class="save-btn">Guardar cambios</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL TIENDA -->
+    <div class="phone-wrap" style="animation-delay:.3s">
+      <div class="phone-label">Panel tienda</div>
+      <div class="phone">
+        <div class="screen-header">
+          <div class="screen-topbar">
+            <div><div class="s-logo">SoyDelParche</div><div class="s-loc">📍 Localidad Engativá</div></div>
+            <div class="s-avatar" style="background:transparent;overflow:hidden;border:1px solid rgba(255,255,255,.2)">☕</div>
+          </div>
+          <div class="s-greeting">PANEL TIENDA</div>
+          <div class="s-name">Café Maddre</div>
+        </div>
+        <div class="tienda-dash">
+          <div class="dash-title">Mis promos</div>
+          <div class="dash-card">
+            <div class="dash-row">
+              <div class="dash-promo-name">2×1 empanadas</div>
+              <div class="dash-aprobada">Aprobada</div>
+            </div>
+            <div class="dash-tipo">2×1</div>
+            <div class="dash-code-row">
+              <div class="dash-code-lbl">Código:</div>
+              <div class="dash-code">3P9NSW</div>
+              <div class="dash-redes">0 redenciones</div>
+            </div>
+          </div>
+          <div class="dash-title" style="margin-top:6px">Subir promo</div>
+          <div style="background:#fff;border-radius:9px;border:1px solid var(--bd);padding:9px 10px">
+            <div style="display:flex;gap:5px;margin-bottom:7px">
+              <div style="flex:1;padding:7px 5px;border-radius:7px;background:var(--tli);border:1.5px solid var(--t);font-family:var(--B);font-size:8px;font-weight:700;color:var(--t);text-align:center">🏷️ Promo</div>
+              <div style="flex:1;padding:7px 5px;border-radius:7px;border:1px solid var(--bd);font-family:var(--B);font-size:8px;color:#888;text-align:center">🎁 Regalo</div>
+            </div>
+            <div class="input-group"><div class="input-lbl">Título</div><div class="fake-input">Ej: 2×1 en empanadas</div></div>
+            <div class="input-group"><div class="input-lbl">Descripción</div><div class="fake-input" style="font-size:9px;color:#888">Válido toda la semana...</div></div>
+            <button style="width:100%;background:var(--t);border:none;border-radius:8px;padding:9px;font-family:var(--F);font-size:15px;color:#fff">Enviar promo</button>
+          </div>
+        </div>
+        <div class="bottom-nav">
+          <div class="nav-tab active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Mis promos</div>
+          <div class="nav-tab"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/></svg>Subir promo</div>
+          <div class="nav-tab"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Actividad</div>
+          <div class="nav-tab"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="5" height="5"/><rect x="16" y="3" width="5" height="5"/><rect x="3" y="16" width="5" height="5"/><line x1="3" y1="11" x2="21" y2="11"/></svg>Cajero</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider-line"></div>
+
+<!-- FEATURES -->
+<section class="section reveal">
+  <div class="section-label">04 — Funcionalidades</div>
+  <div class="section-title">Todo lo que tiene el MVP</div>
+  <div class="section-desc">Construido desde cero con tecnología 100% gratuita.</div>
+
+  <div class="features">
+    <div class="feature">
+      <div class="feat-icon">🔐</div>
+      <div class="feat-title">Auth Firebase</div>
+      <div class="feat-desc">Google OAuth + Email/Contraseña + recuperación de clave. Magic link para invitar clientes perezosos.</div>
+    </div>
+    <div class="feature">
+      <div class="feat-icon">🏷️</div>
+      <div class="feat-title">Promos semanales</div>
+      <div class="feat-desc">Cada tienda sube una promo por semana. El cliente la redime con un código en caja. Máximo 3 por semana.</div>
+    </div>
+    <div class="feature">
+      <div class="feat-icon">🎁</div>
+      <div class="feat-title">Regalo del mes</div>
+      <div class="feat-desc">Lunes, martes y miércoles desde las 4pm. El primer cliente que lo reclame se lo lleva.</div>
+    </div>
+    <div class="feature">
+      <div class="feat-icon">🗺️</div>
+      <div class="feat-title">Mapa del parche</div>
+      <div class="feat-desc">Leaflet + OpenStreetMap gratuito. Puntos de tiendas con promos activas. Detección de ubicación del usuario.</div>
+    </div>
+    <div class="feature">
+      <div class="feat-icon">🎉</div>
+      <div class="feat-title">Parchemos</div>
+      <div class="feat-desc">Actividades y eventos del barrio con contador de interesados, Maps y WhatsApp directo.</div>
+    </div>
+    <div class="feature">
+      <div class="feat-icon">📣</div>
+      <div class="feat-title">Muro comunitario</div>
+      <div class="feat-desc">Anécdotas, clasificados, chisme y más. Con reacciones de carita y respuestas entre vecinos.</div>
+    </div>
+    <div class="feature">
+      <div class="feat-icon">📷</div>
+      <div class="feat-title">Fotos con Cloudinary</div>
+      <div class="feat-desc">Sube fotos directo desde la galería del celular. Sin Drive, sin servidor propio.</div>
+    </div>
+    <div class="feature">
+      <div class="feat-icon">🏪</div>
+      <div class="feat-title">Panel de tienda</div>
+      <div class="feat-desc">Dashboard con promos activas, códigos, cajero para validar redenciones y subir actividades.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-line"></div>
+
+<footer>
+  <div class="footer-logo">SoyDelParche</div>
+  <div class="footer-sub">Minuto de Dios · Bogotá · 2026</div>
+</footer>
+
+<script>
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 60);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+
+// Phone wrap stagger on reveal
+document.querySelectorAll('.phone-wrap').forEach((el, i) => {
+  el.style.transitionDelay = (i * 0.08) + 's';
+  el.style.transition = 'opacity .5s ease, transform .5s ease';
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+});
+
+const phoneObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.phone-wrap').forEach(pw => {
+        pw.style.opacity = '1';
+        pw.style.transform = 'translateY(0)';
+      });
+    }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.phones-grid').forEach(g => phoneObs.observe(g));
+</script>
+
+</body>
+</html>
