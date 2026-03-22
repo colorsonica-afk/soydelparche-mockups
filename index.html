@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SoyDelParche — Sé del parche</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Megrim&family=Noto+Sans+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --teal:    #016D6D;
+      --teal-l:  #00B6B2;
+      --teal-xl: #c2efee;
+      --or:      #FF9658;
+      --or-d:    #FD5A19;
+      --bg:      #0e0e0e;
+      --bg2:     #141414;
+      --bg3:     #1c1c1c;
+      --line:    rgba(255,255,255,0.07);
+      --muted:   rgba(255,255,255,0.4);
+      --text:    #F0EDEA;
+      --F: 'Megrim', cursive;
+      --B: 'Noto Sans Mono', monospace;
+      --grid: repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.025) 39px,rgba(255,255,255,.025) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.025) 39px,rgba(255,255,255,.025) 40px);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--text);font-family:var(--B);overflow-x:hidden;font-size:14px;line-height:1.6;}
+
+    /* HERO */
+    .hero{
+      min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+      padding:clamp(3rem,8vw,6rem) clamp(1.5rem,8vw,6rem);
+      background:var(--grid),radial-gradient(ellipse 90% 70% at 65% 30%,rgba(1,80,80,0.55) 0%,transparent 65%),var(--bg);
+      position:relative;overflow:hidden;
+    }
+    .hero::before{
+      content:'PARCHE';position:absolute;right:-2%;bottom:-8%;
+      font-family:var(--F);font-size:clamp(10rem,28vw,22rem);
+      color:transparent;-webkit-text-stroke:1px rgba(255,255,255,0.03);
+      pointer-events:none;user-select:none;line-height:1;white-space:nowrap;
+    }
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      border:1px solid rgba(0,182,178,0.5);color:var(--teal-l);
+      font-size:0.6rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;
+      padding:5px 14px;border-radius:100px;width:fit-content;margin-bottom:2rem;
+      animation:fadeUp .5s ease both;
+    }
+    .pill-dot{width:6px;height:6px;background:var(--teal-l);border-radius:50%;animation:blink 1.8s ease infinite;}
+    @keyframes blink{0%,100%{opacity:1;}50%{opacity:0.15;}}
+    .hero-title{
+      font-family:var(--F);font-size:clamp(5rem,18vw,14rem);
+      line-height:.88;letter-spacing:.03em;margin-bottom:2rem;
+      animation:fadeUp .6s .1s ease both;
+    }
+    .ht-soy{color:var(--text);display:block;}
+    .ht-del{color:var(--teal-l);display:block;}
+    .ht-parche{color:transparent;-webkit-text-stroke:2px var(--or);display:block;}
+    .hero-sub{
+      font-size:.78rem;color:var(--muted);line-height:1.9;max-width:440px;
+      margin-bottom:2.5rem;animation:fadeUp .6s .2s ease both;
+    }
+    .hero-sub strong{color:var(--text);font-weight:700;}
+    .hero-cta{display:flex;gap:.75rem;flex-wrap:wrap;animation:fadeUp .6s .3s ease both;}
+    .btn{
+      font-family:var(--F);font-size:1.05rem;letter-spacing:.08em;
+      padding:11px 28px;border-radius:3px;text-decoration:none;
+      display:inline-block;transition:transform .15s,box-shadow .15s;border:none;cursor:pointer;
+    }
+    .btn-or{background:var(--or-d);color:#fff;}
+    .btn-or:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 var(--teal);}
+    .btn-ghost{background:transparent;color:var(--teal-l);border:1px solid rgba(0,182,178,0.4);}
+    .btn-ghost:hover{background:rgba(1,109,109,0.15);}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+    /* SECCIONES */
+    section{position:relative;z-index:1;}
+    .sec{padding:clamp(3rem,7vw,5rem) clamp(1.5rem,8vw,6rem);}
+    .sec-dark{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+    .sec-tag{font-size:.58rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--teal-l);margin-bottom:.8rem;display:flex;align-items:center;gap:8px;}
+    .sec-tag::after{content:'';flex:1;height:1px;background:rgba(0,182,178,0.15);}
+    .sec-title{font-family:var(--F);font-size:clamp(2.8rem,7vw,5.5rem);line-height:.92;margin-bottom:2.5rem;}
+
+    /* PROGRESO */
+    .section-progress{}
+    .progress-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem;}
+    .stat-box{background:var(--bg3);border-radius:6px;padding:1.25rem 1.5rem;border:1px solid var(--line);}
+    .stat-label{font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem;}
+    .stat-val{font-family:var(--F);font-size:clamp(2rem,5vw,3rem);line-height:1;}
+    .stat-val.or{color:var(--or);}
+    .stat-val.tl{color:var(--teal-l);}
+    .bar-labels{display:flex;justify-content:space-between;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem;}
+    .bar-track{height:10px;background:var(--bg3);border-radius:100px;overflow:hidden;border:1px solid var(--line);}
+    .bar-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--teal-l),var(--or));border-radius:100px;width:var(--pct,0%);transition:width 1.6s cubic-bezier(.16,1,.3,1);}
+    .bar-caption{font-size:.6rem;color:var(--muted);margin-top:.5rem;}
+
+    /* QUÉ ES */
+    .dos-cols{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border-radius:8px;overflow:hidden;margin-top:1.5rem;}
+    .col-bloque{background:var(--bg);padding:2rem 1.75rem;}
+    .col-bloque:first-child{background:rgba(1,109,109,0.1);}
+    .col-tag{font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--or);margin-bottom:1rem;}
+    .col-bloque ul{list-style:none;display:flex;flex-direction:column;gap:.7rem;}
+    .col-bloque li{font-size:.76rem;color:var(--muted);display:flex;gap:.6rem;line-height:1.6;}
+    .col-bloque li::before{content:'→';color:var(--teal-l);flex-shrink:0;margin-top:1px;}
+
+    /* IMPACTO */
+    .impacto-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line);border-radius:8px;overflow:hidden;margin-top:1.5rem;}
+    .impacto-item{background:var(--bg2);padding:1.75rem 1.5rem;transition:background .2s;}
+    .impacto-item:hover{background:var(--bg3);}
+    .imp-icon{font-size:1.6rem;margin-bottom:.75rem;}
+    .imp-tit{font-weight:700;font-size:.82rem;color:var(--text);margin-bottom:.35rem;}
+    .imp-desc{font-size:.72rem;color:var(--muted);line-height:1.7;}
+
+    /* LOGROS */
+    .logros{display:flex;flex-direction:column;gap:0;margin-top:1.5rem;border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+    .logro{display:flex;gap:1.25rem;align-items:flex-start;padding:1.25rem 1.5rem;border-bottom:1px solid var(--line);transition:background .2s;}
+    .logro:last-child{border-bottom:none;}
+    .logro:hover{background:var(--bg3);}
+    .logro-num{font-family:var(--F);font-size:1.8rem;color:var(--teal-l);flex-shrink:0;line-height:1;width:32px;text-align:right;}
+    .logro-tit{font-weight:700;font-size:.82rem;color:var(--text);margin-bottom:.2rem;}
+    .logro-desc{font-size:.72rem;color:var(--muted);line-height:1.7;}
+    .inv-box{
+      margin-top:1.5rem;
+      background:linear-gradient(135deg,rgba(1,109,109,0.18),rgba(253,90,25,0.08));
+      border:1px solid rgba(0,182,178,0.22);border-radius:8px;
+      padding:1.5rem 1.75rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;
+    }
+    .inv-num{font-family:var(--F);font-size:clamp(2rem,4vw,3rem);color:var(--or);}
+    .inv-desc{font-size:.72rem;color:var(--muted);line-height:1.7;flex:1;min-width:200px;}
+
+    /* DESTINO */
+    .destino-table{width:100%;border-collapse:collapse;margin-top:1.5rem;}
+    .destino-table th{font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:.75rem 1rem;text-align:left;border-bottom:1px solid var(--line);}
+    .destino-table td{padding:.9rem 1rem;font-size:.75rem;color:var(--muted);border-bottom:1px solid rgba(255,255,255,0.04);}
+    .destino-table td:first-child{color:var(--text);font-weight:600;}
+    .destino-table td:nth-child(2){font-family:var(--F);font-size:1.1rem;color:var(--or);white-space:nowrap;}
+    .destino-table td:last-child{color:var(--teal-l);font-size:.7rem;}
+    .destino-table tr.total-row td{border-top:1px solid rgba(0,182,178,0.25);border-bottom:none;padding-top:1rem;}
+    .destino-table tr.total-row td:first-child{color:var(--teal-l);font-weight:700;}
+    .destino-table tr.total-row td:nth-child(2){font-size:1.4rem;}
+    .destino-table tbody tr:hover td{background:rgba(255,255,255,0.02);}
+
+    /* CUPOS */
+    .cupos-nota{font-size:.7rem;color:var(--muted);margin-top:.4rem;margin-bottom:2rem;line-height:1.7;}
+    .cupos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1rem;}
+    .cupo{border-radius:8px;overflow:hidden;display:flex;flex-direction:column;transition:transform .18s,box-shadow .18s;cursor:pointer;position:relative;border:1px solid var(--line);}
+    .cupo:not(.disabled):not(.agotado):hover{transform:translate(-4px,-4px);}
+    .cupo.t1:not(.disabled):not(.agotado):hover{box-shadow:6px 6px 0 var(--teal);}
+    .cupo.t2:not(.disabled):not(.agotado):hover{box-shadow:6px 6px 0 var(--or);}
+    .cupo.t3:not(.disabled):not(.agotado):hover{box-shadow:6px 6px 0 #e05a00;}
+    .cupo.t4:not(.disabled):not(.agotado):hover{box-shadow:6px 6px 0 var(--or-d);}
+    .cupo.disabled{opacity:.3;cursor:not-allowed;}
+    .cupo.agotado{opacity:.4;cursor:not-allowed;}
+    .cupo-head{padding:1.5rem 1.5rem 1rem;position:relative;}
+    .cupo.t1 .cupo-head{background:rgba(0,182,178,0.1);border-bottom:2px solid var(--teal-l);}
+    .cupo.t2 .cupo-head{background:rgba(255,150,88,0.1);border-bottom:2px solid var(--or);}
+    .cupo.t3 .cupo-head{background:rgba(224,90,0,0.1);border-bottom:2px solid #e05a00;}
+    .cupo.t4 .cupo-head{background:rgba(253,90,25,0.12);border-bottom:2px solid var(--or-d);}
+    .cupo-badge{font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem;}
+    .cupo.t1 .cupo-badge{color:var(--teal-l);}
+    .cupo.t2 .cupo-badge{color:var(--or);}
+    .cupo.t3 .cupo-badge{color:#e05a00;}
+    .cupo.t4 .cupo-badge{color:var(--or-d);}
+    .cupo-monto{font-family:var(--F);font-size:clamp(2.5rem,5vw,3.2rem);line-height:1;margin-bottom:.25rem;}
+    .cupo.t1 .cupo-monto{color:var(--teal-l);}
+    .cupo.t2 .cupo-monto{color:var(--or);}
+    .cupo.t3 .cupo-monto{color:#e05a00;}
+    .cupo.t4 .cupo-monto{color:var(--or-d);}
+    .cupo-disp{position:absolute;top:1.25rem;right:1.25rem;font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:rgba(0,0,0,.4);padding:4px 10px;border-radius:100px;}
+    .cupo-body{background:var(--bg3);padding:1.25rem 1.5rem 1.5rem;flex:1;display:flex;flex-direction:column;gap:1rem;}
+    .cupo-perks{list-style:none;display:flex;flex-direction:column;gap:.45rem;}
+    .cupo-perks li{font-size:.72rem;color:var(--muted);display:flex;gap:.5rem;align-items:flex-start;line-height:1.6;}
+    .cupo-perks li::before{content:'→';color:var(--teal-l);flex-shrink:0;margin-top:1px;}
+    .btn-cupo{font-family:var(--F);font-size:1rem;letter-spacing:.07em;padding:11px;border-radius:4px;border:none;cursor:pointer;display:block;width:100%;text-align:center;transition:opacity .15s;}
+    .cupo.t1 .btn-cupo{background:var(--teal-l);color:var(--bg);}
+    .cupo.t2 .btn-cupo{background:var(--or);color:var(--bg);}
+    .cupo.t3 .btn-cupo{background:#e05a00;color:#fff;}
+    .cupo.t4 .btn-cupo{background:var(--or-d);color:#fff;}
+    .btn-cupo:hover{opacity:.85;}
+    .btn-cupo:disabled{opacity:.5;cursor:not-allowed;}
+    .stamp{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-12deg);font-family:var(--F);font-size:1.8rem;letter-spacing:.1em;color:var(--text);background:var(--bg);border:2px solid var(--muted);padding:5px 18px;white-space:nowrap;z-index:10;pointer-events:none;display:none;}
+    .cupo.agotado .stamp{display:block;}
+
+    /* BENEFICIOS */
+    .bene-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--line);border-radius:8px;overflow:hidden;margin-top:1.5rem;}
+    .bene-item{background:var(--bg2);padding:1.75rem 1.5rem;transition:background .2s;}
+    .bene-item:hover{background:var(--bg3);}
+    .bene-icon{font-size:1.5rem;margin-bottom:.7rem;}
+    .bene-tit{font-weight:700;font-size:.82rem;color:var(--text);margin-bottom:.3rem;}
+    .bene-desc{font-size:.72rem;color:var(--muted);line-height:1.7;}
+
+    /* PROYECCIÓN */
+    .proy-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin-top:1.5rem;}
+    .proy-item{background:var(--bg3);border-radius:6px;padding:1.25rem;border:1px solid var(--line);text-align:center;}
+    .proy-num{font-family:var(--F);font-size:clamp(2.5rem,5vw,4rem);line-height:1;color:var(--teal-l);margin-bottom:.3rem;}
+    .proy-num.or{color:var(--or);}
+    .proy-label{font-size:.65rem;color:var(--muted);line-height:1.5;}
+    .proy-milestone{margin-top:1.5rem;background:linear-gradient(135deg,rgba(1,109,109,0.15),rgba(253,90,25,0.08));border:1px solid rgba(0,182,178,0.2);border-radius:6px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
+    .ms-tag{font-family:var(--F);font-size:1.4rem;color:var(--or);flex-shrink:0;}
+    .ms-desc{font-size:.72rem;color:var(--muted);line-height:1.7;flex:1;}
+
+    /* CÓMO */
+    .pasos{display:flex;flex-direction:column;gap:0;margin-top:1.5rem;border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+    .paso{display:flex;gap:1.25rem;align-items:flex-start;padding:1.5rem;border-bottom:1px solid var(--line);}
+    .paso:last-child{border-bottom:none;}
+    .paso-n{font-family:var(--F);font-size:2rem;color:var(--teal-l);flex-shrink:0;width:32px;text-align:right;line-height:1;}
+    .paso-tit{font-weight:700;font-size:.82rem;color:var(--text);margin-bottom:.3rem;}
+    .paso-desc{font-size:.72rem;color:var(--muted);line-height:1.7;}
+    .nequi-card{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;background:linear-gradient(135deg,#5c1aad,#8b2be2);border-radius:8px;padding:1rem 1.5rem;margin-top:.75rem;max-width:420px;}
+    .nq-brand{font-family:var(--F);font-size:1.1rem;color:rgba(255,255,255,.7);letter-spacing:.06em;}
+    .nq-num{font-size:1.3rem;font-weight:700;color:#fff;letter-spacing:.06em;}
+    .nq-copy{margin-left:auto;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;border-radius:5px;cursor:pointer;transition:background .15s;white-space:nowrap;font-family:var(--B);}
+    .nq-copy:hover{background:rgba(255,255,255,.28);}
+    .nq-copy.copied{background:var(--teal);color:var(--bg);}
+    .wsp-btn{display:flex;align-items:center;gap:.7rem;background:#25D366;color:#fff;font-family:var(--F);font-size:1.1rem;letter-spacing:.07em;padding:13px 24px;border-radius:5px;text-decoration:none;width:fit-content;margin-top:.75rem;transition:transform .15s,box-shadow .15s;}
+    .wsp-btn:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 rgba(37,211,102,.3);}
+    .wsp-btn svg{width:20px;height:20px;fill:#fff;flex-shrink:0;}
+
+    /* CIERRE */
+    .cierre{padding:clamp(4rem,8vw,7rem) clamp(1.5rem,8vw,6rem);background:var(--grid),radial-gradient(ellipse 70% 60% at 40% 50%,rgba(1,80,80,0.4) 0%,transparent 65%),var(--bg);text-align:center;}
+    .cierre-title{font-family:var(--F);font-size:clamp(3.5rem,10vw,8rem);line-height:.9;margin-bottom:2rem;}
+    .ct1{color:var(--text);display:block;}
+    .ct2{color:var(--teal-l);display:block;}
+    .ct3{color:transparent;-webkit-text-stroke:2px var(--or);display:block;}
+    .cierre-quote{max-width:540px;margin:0 auto 2.5rem;font-size:.78rem;color:var(--muted);line-height:2;}
+    .cierre-quote em{color:var(--teal-xl);font-style:italic;}
+    .cierre-cta{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;}
+
+    /* FOOTER */
+    footer{padding:1.5rem clamp(1.5rem,8vw,6rem);border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+    .footer-brand{font-family:var(--F);font-size:1.3rem;letter-spacing:.05em;}
+    .footer-brand span{color:var(--or);}
+    .footer-links{display:flex;gap:1.5rem;flex-wrap:wrap;}
+    .footer-links a{font-size:.62rem;color:var(--muted);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .15s;}
+    .footer-links a:hover{color:var(--teal-l);}
+
+    /* MODAL */
+    .overlay{position:fixed;inset:0;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);z-index:200;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;}
+    .overlay.open{opacity:1;pointer-events:all;}
+    .modal{background:var(--bg2);width:100%;max-width:520px;border-radius:16px 16px 0 0;padding:1.75rem 1.75rem 3rem;transform:translateY(100%);transition:transform .35s cubic-bezier(.16,1,.3,1);border-top:1px solid var(--line);position:relative;}
+    .overlay.open .modal{transform:translateY(0);}
+    .modal-handle{width:38px;height:3px;background:rgba(255,255,255,.15);border-radius:100px;margin:0 auto 1.5rem;}
+    .modal-close{position:absolute;top:1.5rem;right:1.5rem;background:rgba(255,255,255,.08);border:none;color:var(--text);width:30px;height:30px;border-radius:50%;font-size:.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+    .modal-badge{display:inline-block;font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border-radius:100px;margin-bottom:.75rem;}
+    .modal-monto{font-family:var(--F);font-size:3.5rem;line-height:1;margin-bottom:.25rem;}
+    .modal-desc{font-size:.75rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.8;}
+    .modal-pasos{display:flex;flex-direction:column;gap:.9rem;margin-bottom:1.5rem;}
+    .modal-paso{display:flex;gap:.9rem;align-items:flex-start;}
+    .mp-n{width:24px;height:24px;border-radius:50%;background:var(--teal);color:var(--bg);font-family:var(--F);font-size:.95rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .mp-text{font-size:.75rem;color:var(--muted);line-height:1.7;padding-top:3px;}
+    .mp-text strong{color:var(--text);}
+
+    @media(max-width:600px){
+      .dos-cols{grid-template-columns:1fr;}
+      .destino-table td:last-child,.destino-table th:last-child{display:none;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="pill"><span class="pill-dot"></span>MVP · Minuto de Dios · Bogotá 2026</div>
+  <h1 class="hero-title">
+    <span class="ht-soy">Soy</span>
+    <span class="ht-del">Del</span>
+    <span class="ht-parche">Parche</span>
+  </h1>
+  <p class="hero-sub">
+    Plataforma híbrida — física y digital — que conecta <strong>vecinos con las tiendas y emprendimientos del barrio</strong>.<br><br>
+    Buscamos socios de apoyo para llegar al punto de autosostenibilidad. <strong>No es una inversión: es un acto de confianza en el impacto social</strong> de un proyecto que ya existe.
+  </p>
+  <div class="hero-cta">
+    <a href="#cupos" class="btn btn-or">Quiero ser Socio →</a>
+    <a href="https://colorsonica-afk.github.io/soydelparche-mockups/" target="_blank" class="btn btn-ghost">Ver la app ↗</a>
+  </div>
+</section>
+
+<!-- PROGRESO -->
+<section class="sec sec-dark section-progress">
+  <div class="sec-tag">Estado del funding</div>
+  <div class="progress-grid">
+    <div class="stat-box"><div class="stat-label">Recaudado</div><div class="stat-val tl" id="val-rec">$0</div></div>
+    <div class="stat-box"><div class="stat-label">Meta total</div><div class="stat-val or">$12M</div></div>
+  </div>
+  <div class="bar-labels"><span id="pct-lbl">0%</span><span id="pct-det">0 de 12 millones COP</span></div>
+  <div class="bar-track"><div class="bar-fill" id="bar-fill" style="--pct:0%"></div></div>
+  <p class="bar-caption" id="bar-cap">Quedan 8 cupos disponibles — sé parte desde el inicio.</p>
+</section>
+
+<!-- QUÉ ES -->
+<section class="sec">
+  <div class="sec-tag">01 — El proyecto</div>
+  <h2 class="sec-title">¿Qué es<br>SoyDelParche?</h2>
+  <div class="dos-cols">
+    <div class="col-bloque">
+      <div class="col-tag">🏠 Local físico</div>
+      <ul>
+        <li>Punto de encuentro barrial con identidad propia</li>
+        <li>Vitrina para emprendimientos locales (hasta 20 personas)</li>
+        <li>Espacio para eventos, charlas y activaciones</li>
+      </ul>
+    </div>
+    <div class="col-bloque">
+      <div class="col-tag">📱 App digital</div>
+      <ul>
+        <li>Promos y regalos de tiendas del barrio</li>
+        <li>Mapa interactivo de negocios locales</li>
+        <li>Muro comunitario: clasificados, anécdotas y más</li>
+        <li>Actividades y eventos del parche</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACTO -->
+<section class="sec sec-dark">
+  <div class="sec-tag">02 — El impacto</div>
+  <h2 class="sec-title">Cada peso tiene<br>destino comunitario</h2>
+  <div class="impacto-grid">
+    <div class="impacto-item"><div class="imp-icon">🛠️</div><div class="imp-tit">Herramientas accesibles</div><div class="imp-desc">Las tiendas del barrio obtienen marketing asequible y efectivo, sin tecnicismos.</div></div>
+    <div class="impacto-item"><div class="imp-icon">🔗</div><div class="imp-tit">Comunidad conectada</div><div class="imp-desc">Los vecinos descubren qué hay en su barrio, dónde comprar local y qué pasa esta semana.</div></div>
+    <div class="impacto-item"><div class="imp-icon">🎭</div><div class="imp-tit">Espacio cultural</div><div class="imp-desc">Charlas, lanzamientos y talleres gratuitos o de bajo costo para toda la comunidad.</div></div>
+    <div class="impacto-item"><div class="imp-icon">🪟</div><div class="imp-tit">Vitrina sin arriendo</div><div class="imp-desc">Emprendimientos con sentido barrial tienen vitrina física propia, sin pagar local.</div></div>
+    <div class="impacto-item"><div class="imp-icon">🔄</div><div class="imp-tit">Economía circular</div><div class="imp-desc">La plata del vecino se queda en el barrio. Compramos local, fortalecemos local.</div></div>
+  </div>
+</section>
+
+<!-- YA SE CONSTRUYÓ -->
+<section class="sec">
+  <div class="sec-tag">03 — Lo que ya existe</div>
+  <h2 class="sec-title">No es una idea<br>en papel</h2>
+  <div class="logros">
+    <div class="logro"><div class="logro-num">1</div><div><div class="logro-tit">App v1 funcional en producción</div><div class="logro-desc">Promos, regalos, actividades, muro comunitario y mapa de tiendas corriendo hoy.</div></div></div>
+    <div class="logro"><div class="logro-num">2</div><div><div class="logro-tit">50–100 vecinos activos</div><div class="logro-desc">Tenderos y emprendedores del barrio ya conocen y apoyan el proyecto desde el lanzamiento.</div></div></div>
+    <div class="logro"><div class="logro-num">3</div><div><div class="logro-tit">Espacio físico equipado</div><div class="logro-desc">Mobiliario y decoración instalados con identidad SoyDelParche. El local tiene vida propia.</div></div></div>
+    <div class="logro"><div class="logro-num">4</div><div><div class="logro-tit">Publicidad fase 1 activada</div><div class="logro-desc">Volantes y stickers distribuidos. Primeras activaciones de marca en la calle ya ocurrieron.</div></div></div>
+    <div class="logro"><div class="logro-num">5</div><div><div class="logro-tit">Primeras tiendas registradas</div><div class="logro-desc">Clientes reales usando la plataforma. El ciclo promo → redención → fidelización ya funciona.</div></div></div>
+  </div>
+  <div class="inv-box">
+    <div class="inv-num">$12.000.000</div>
+    <div class="inv-desc">Inversión propia del fundador en trabajo, activos y comunidad — antes de pedirle un peso a alguien. Esto ya existe porque alguien creyó primero.</div>
+  </div>
+</section>
+
+<!-- DESTINO -->
+<section class="sec sec-dark">
+  <div class="sec-tag">04 — El apoyo</div>
+  <h2 class="sec-title">A dónde va<br>cada peso</h2>
+  <table class="destino-table">
+    <thead><tr><th>Destino</th><th>Monto</th><th>Impacto</th></tr></thead>
+    <tbody>
+      <tr><td>Arriendo y adecuación del local físico</td><td>$3.500.000</td><td>El barrio tiene un espacio propio</td></tr>
+      <tr><td>Operación de la app (6 meses)</td><td>$3.000.000</td><td>Las tiendas tienen herramientas digitales</td></tr>
+      <tr><td>Marketing y publicidad fase 2</td><td>$2.000.000</td><td>Más vecinos y tiendas se suman</td></tr>
+      <tr><td>Eventos y activaciones comunitarias</td><td>$2.000.000</td><td>El barrio se encuentra y celebra</td></tr>
+      <tr><td>Capital operativo de contingencia</td><td>$1.500.000</td><td>Sostenibilidad en los primeros meses</td></tr>
+      <tr class="total-row"><td>TOTAL</td><td>$12.000.000</td><td>Un barrio más conectado y vivo</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- CUPOS -->
+<section class="sec" id="cupos">
+  <div class="sec-tag">05 — Aporta</div>
+  <h2 class="sec-title">Elige cómo<br>entrar al parche</h2>
+  <p class="cupos-nota">Cupos limitados para que siempre sumemos exactamente $12M. Si alguien toma el cupo de $12M, los demás se desactivan automáticamente.</p>
+  <div class="cupos-grid" id="cupos-grid">
+
+    <div class="cupo t1" data-tier="1">
+      <div class="cupo-head">
+        <div class="cupo-disp" id="disp-1">6 cupos</div>
+        <div class="cupo-badge">Vecino Fundador</div>
+        <div class="cupo-monto">$2M</div>
+        <div class="stamp">AGOTADO</div>
+      </div>
+      <div class="cupo-body">
+        <ul class="cupo-perks">
+          <li>Nombre en los créditos de la app</li>
+          <li>Acceso a la beta privada</li>
+          <li>Reporte mensual de impacto</li>
+          <li>Carta de reconocimiento como socio</li>
+          <li>Invitación a todos los eventos del local</li>
+        </ul>
+        <button class="btn-cupo" onclick="abrirModal(1)">Apartar cupo →</button>
+      </div>
+    </div>
+
+    <div class="cupo t2" data-tier="2">
+      <div class="cupo-head">
+        <div class="cupo-disp" id="disp-2">3 cupos</div>
+        <div class="cupo-badge">Aliado del Parche</div>
+        <div class="cupo-monto">$4M</div>
+        <div class="stamp">AGOTADO</div>
+      </div>
+      <div class="cupo-body">
+        <ul class="cupo-perks">
+          <li>Todo lo del plan Vecino Fundador</li>
+          <li>Nombre o logo en el local físico</li>
+          <li>Reconocimiento permanente en la app</li>
+          <li>Mención en redes sociales del barrio</li>
+        </ul>
+        <button class="btn-cupo" onclick="abrirModal(2)">Apartar cupo →</button>
+      </div>
+    </div>
+
+    <div class="cupo t3" data-tier="3">
+      <div class="cupo-head">
+        <div class="cupo-disp" id="disp-3">2 cupos</div>
+        <div class="cupo-badge">Sponsor Barrio</div>
+        <div class="cupo-monto">$6M</div>
+        <div class="stamp">AGOTADO</div>
+      </div>
+      <div class="cupo-body">
+        <ul class="cupo-perks">
+          <li>Todo lo del plan Aliado</li>
+          <li>Co-branding en el lanzamiento oficial</li>
+          <li>Logo prominente en eventos y activaciones</li>
+          <li>Primera fila en todas las actividades</li>
+        </ul>
+        <button class="btn-cupo" onclick="abrirModal(3)">Apartar cupo →</button>
+      </div>
+    </div>
+
+    <div class="cupo t4" data-tier="4">
+      <div class="cupo-head">
+        <div class="cupo-disp" id="disp-4">1 cupo</div>
+        <div class="cupo-badge">Sponsor Total</div>
+        <div class="cupo-monto">$12M</div>
+        <div class="stamp">AGOTADO</div>
+      </div>
+      <div class="cupo-body">
+        <ul class="cupo-perks">
+          <li>Sponsor principal — el proyecto lleva tu sello</li>
+          <li>Todo lo de los planes anteriores</li>
+          <li>Co-fundador oficial de SoyDelParche</li>
+          <li>Logo en toda la app y el local permanentemente</li>
+          <li>Voz en decisiones de producto y dirección</li>
+        </ul>
+        <button class="btn-cupo" onclick="abrirModal(4)">Ser el sponsor →</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section class="sec sec-dark">
+  <div class="sec-tag">06 — Reconocimiento</div>
+  <h2 class="sec-title">Sin retorno económico.<br>Con reconocimiento real.</h2>
+  <div class="bene-grid">
+    <div class="bene-item"><div class="bene-icon">📍</div><div class="bene-tit">Visibilidad en el local</div><div class="bene-desc">Nombre o logo en el punto físico del barrio, visto por toda la comunidad cada día.</div></div>
+    <div class="bene-item"><div class="bene-icon">📱</div><div class="bene-tit">Mención en la app</div><div class="bene-desc">Reconocimiento permanente dentro de SoyDelParche como Socio Fundador.</div></div>
+    <div class="bene-item"><div class="bene-icon">🎉</div><div class="bene-tit">Invitación a eventos</div><div class="bene-desc">Charlas, lanzamientos y activaciones en el local. Siempre en primera fila.</div></div>
+    <div class="bene-item"><div class="bene-icon">📊</div><div class="bene-tit">Reporte mensual</div><div class="bene-desc">Tiendas, vecinos, promos y actividades generadas. Ves a dónde fue tu apoyo.</div></div>
+    <div class="bene-item"><div class="bene-icon">📣</div><div class="bene-tit">Reconocimiento público</div><div class="bene-desc">En redes sociales y en la comunidad del barrio como impulsor del proyecto.</div></div>
+    <div class="bene-item"><div class="bene-icon">📜</div><div class="bene-tit">Carta de reconocimiento</div><div class="bene-desc">Documento formal que certifica tu rol como Socio Fundador de SoyDelParche.</div></div>
+  </div>
+</section>
+
+<!-- PROYECCIÓN -->
+<section class="sec">
+  <div class="sec-tag">07 — En 12 meses</div>
+  <h2 class="sec-title">Tu aporte hace posible<br>llegar aquí</h2>
+  <div class="proy-grid">
+    <div class="proy-item"><div class="proy-num">500+</div><div class="proy-label">vecinos activos en la plataforma</div></div>
+    <div class="proy-item"><div class="proy-num">100</div><div class="proy-label">negocios del barrio en la app</div></div>
+    <div class="proy-item"><div class="proy-num or">20</div><div class="proy-label">emprendimientos con vitrina física</div></div>
+    <div class="proy-item"><div class="proy-num or">1.000+</div><div class="proy-label">promos y regalos redimidos</div></div>
+    <div class="proy-item"><div class="proy-num">40–60</div><div class="proy-label">actividades en el local</div></div>
+  </div>
+  <div class="proy-milestone">
+    <div class="ms-tag">Mes 4–5</div>
+    <div class="ms-desc">El proyecto genera sus propios ingresos. Tu aporte hace posible llegar a ese punto de autosostenibilidad sin salir del barrio.</div>
+  </div>
+</section>
+
+<!-- CÓMO FUNCIONA -->
+<section class="sec sec-dark">
+  <div class="sec-tag">08 — El proceso</div>
+  <h2 class="sec-title">¿Cómo<br>funciona?</h2>
+  <div class="pasos">
+    <div class="paso">
+      <div class="paso-n">1</div>
+      <div>
+        <div class="paso-tit">Escoge tu cupo</div>
+        <div class="paso-desc">Elige el monto que más te convenga arriba. Cada cupo tiene beneficios propios y cupos limitados.</div>
+      </div>
+    </div>
+    <div class="paso">
+      <div class="paso-n">2</div>
+      <div>
+        <div class="paso-tit">Transfiere por Nequi</div>
+        <div class="paso-desc">Envía el monto al número del proyecto. Pon tu nombre en la descripción para identificar el pago.</div>
+        <div class="nequi-card">
+          <div><div class="nq-brand">Nequi</div><div class="nq-num" id="nq-disp">319 241 4610</div></div>
+          <button class="nq-copy" id="copy-main" onclick="copiarNequi('copy-main')">Copiar</button>
+        </div>
+      </div>
+    </div>
+    <div class="paso">
+      <div class="paso-n">3</div>
+      <div>
+        <div class="paso-tit">Avísanos por WhatsApp</div>
+        <div class="paso-desc">Mándanos el comprobante y tu nombre. En menos de 24h te confirmamos y te agregamos al grupo privado de socios.</div>
+        <a class="wsp-btn" href="https://wa.me/573192414610?text=Hola%2C+quiero+ser+Socio+de+SoyDelParche.+Adjunto+comprobante+Nequi.+Mi+nombre+es%3A+" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Enviar comprobante
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CIERRE -->
+<section class="cierre">
+  <h2 class="cierre-title">
+    <span class="ct1">Los barrios</span>
+    <span class="ct2">no se transforman</span>
+    <span class="ct3">solos.</span>
+  </h2>
+  <p class="cierre-quote">
+    Se transforman cuando alguien decide creer en ellos<br>
+    <em>antes de que todo el mundo lo vea.</em>
+  </p>
+  <div class="cierre-cta">
+    <a href="#cupos" class="btn btn-or">Sé del parche →</a>
+    <a href="https://colorsonica-afk.github.io/soydelparche-mockups/" target="_blank" class="btn btn-ghost">Ver mockup ↗</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Soy<span>Del</span>Parche</div>
+  <div class="footer-links">
+    <a href="https://colorsonica-afk.github.io/soydelparche-mockups/" target="_blank">La app</a>
+    <a href="https://wa.me/573192414610" target="_blank">WhatsApp</a>
+    <a href="mailto:colorsonica@gmail.com">Contacto</a>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="cerrarOverlay(event)">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <button class="modal-close" onclick="cerrarModal()">✕</button>
+    <div class="modal-badge" id="m-badge"></div>
+    <div class="modal-monto" id="m-monto"></div>
+    <div class="modal-desc" id="m-desc"></div>
+    <div class="modal-pasos">
+      <div class="modal-paso"><div class="mp-n">1</div><div class="mp-text">Transfiere <strong id="m-monto-inline"></strong> por Nequi al <strong>319 241 4610</strong>. Pon tu nombre en la descripción.</div></div>
+      <div class="modal-paso"><div class="mp-n">2</div><div class="mp-text">Envíanos el comprobante por WhatsApp junto a tu nombre completo.</div></div>
+      <div class="modal-paso"><div class="mp-n">3</div><div class="mp-text">En menos de 24h te confirmamos y te agregamos al grupo privado de socios fundadores.</div></div>
+    </div>
+    <div class="nequi-card" style="max-width:100%;margin-bottom:1rem;">
+      <div><div class="nq-brand">Nequi</div><div class="nq-num">319 241 4610</div></div>
+      <button class="nq-copy" id="copy-modal" onclick="copiarNequi('copy-modal')">Copiar</button>
+    </div>
+    <a class="wsp-btn" id="m-wsp" href="#" target="_blank" style="width:100%;justify-content:center;">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Enviar comprobante por WhatsApp
+    </a>
+  </div>
+</div>
+
+<script>
+const NEQUI = '3192414610';
+const WSP   = '573192414610';
+
+// ── EDITA ESTO cuando confirmes un pago ──
+const ESTADO = {
+  1: { vendidos:0, total:6,  monto:2000000,  label:'Vecino Fundador',   key:'$2M'  },
+  2: { vendidos:0, total:3,  monto:4000000,  label:'Aliado del Parche', key:'$4M'  },
+  3: { vendidos:0, total:2,  monto:6000000,  label:'Sponsor Barrio',    key:'$6M'  },
+  4: { vendidos:0, total:1,  monto:12000000, label:'Sponsor Total',     key:'$12M' },
+};
+
+const COLORS = { 1:'#00B6B2', 2:'#FF9658', 3:'#e05a00', 4:'#FD5A19' };
+const DESC   = {
+  1:'Entras al parche como uno de los primeros 6 vecinos fundadores. Tu nombre en la app para siempre.',
+  2:'Apoyo sólido. Tu nombre o negocio queda como Aliado Fundador con visibilidad en el local físico.',
+  3:'Patrocinas la mitad del proyecto. Co-branding desde el día 1 y primera fila en todo lo que pase.',
+  4:'Eres EL sponsor del proyecto. Co-fundador oficial. SoyDelParche lleva tu sello desde el inicio.',
+};
+
+function fmt(n){if(n===0)return'$0';if(n%1000000===0)return'$'+(n/1000000)+'M';return'$'+(n/1000000).toFixed(1)+'M';}
+
+function recalcular(){
+  let rec=0, rest=0;
+  const hay12=ESTADO[4].vendidos>=ESTADO[4].total;
+  for(let t in ESTADO){
+    const e=ESTADO[t], d=Math.max(0,e.total-e.vendidos);
+    rec+=e.vendidos*e.monto; rest+=d;
+    const card=document.querySelector(`.cupo[data-tier="${t}"]`);
+    const btn=card.querySelector('.btn-cupo');
+    document.getElementById(`disp-${t}`).textContent=d===1?'1 cupo':`${d} cupos`;
+    if(d<=0){card.classList.add('agotado');card.classList.remove('disabled');btn.disabled=true;btn.textContent='Agotado';}
+    else if(hay12&&parseInt(t)<4){card.classList.add('disabled');card.classList.remove('agotado');btn.disabled=true;}
+    else{card.classList.remove('agotado','disabled');btn.disabled=false;}
+  }
+  const pct=Math.min(100,rec/12000000*100);
+  document.getElementById('bar-fill').style.setProperty('--pct',pct+'%');
+  document.getElementById('pct-lbl').textContent=Math.round(pct)+'%';
+  document.getElementById('pct-det').textContent=fmt(rec)+' de 12 millones COP';
+  document.getElementById('val-rec').textContent=fmt(rec);
+  document.getElementById('bar-cap').textContent=rest===0?'¡Meta alcanzada! Gracias a todos los socios 🎉':`Quedan ${rest} cupos disponibles — sé parte desde el inicio.`;
+}
+
+// Animar barra al scroll
+const io=new IntersectionObserver(e=>{if(e[0].isIntersecting){recalcular();io.disconnect();}},{threshold:.3});
+io.observe(document.querySelector('.section-progress'));
+recalcular();
+
+// Modal
+function abrirModal(tier){
+  const e=ESTADO[tier],c=COLORS[tier];
+  const b=document.getElementById('m-badge');
+  b.textContent=e.label;b.style.cssText=`background:${c}22;color:${c};border:1px solid ${c}44;`;
+  document.getElementById('m-monto').textContent=e.key;
+  document.getElementById('m-monto').style.color=c;
+  document.getElementById('m-desc').textContent=DESC[tier];
+  document.getElementById('m-monto-inline').textContent=new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0}).format(e.monto);
+  const msg=encodeURIComponent(`Hola! Quiero apartar un cupo ${e.key} (${e.label}) de SoyDelParche. Adjunto comprobante Nequi. Mi nombre es: `);
+  document.getElementById('m-wsp').href=`https://wa.me/${WSP}?text=${msg}`;
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function cerrarModal(){document.getElementById('overlay').classList.remove('open');document.body.style.overflow='';}
+function cerrarOverlay(e){if(e.target===document.getElementById('overlay'))cerrarModal();}
+
+// Copiar
+function copiarNequi(id){
+  navigator.clipboard.writeText(NEQUI).then(()=>{
+    const b=document.getElementById(id),o=b.textContent;
+    b.textContent='✓ Copiado';b.classList.add('copied');
+    setTimeout(()=>{b.textContent=o;b.classList.remove('copied');},2000);
+  });
+}
+</script>
+</body>
+</html>
